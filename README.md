@@ -18,7 +18,7 @@ require 'event-lifecycle`
 
 Three new global functions are provided:
 
-* `can_destroy( entity )` -- can the entity be deleted?
+* `can_destroy( entity )`
 * `destroy_entity( entity )` -- includes check to see if it `can_detroy( entity )`
 * `create_entity( surface, settings[, player] )`
 
