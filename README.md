@@ -10,11 +10,11 @@ Use the functions provided by this module when you create or destroy entities th
 
 ## Example
 
-Imagine you've got a mod that creates roads, but you want to line those roads with [concrete lampposts](https://mods.factorio.com/mods/Klonan/Concrete_Lamppost) (entity from a separate mod).
+Imagine you've got a mod that creates roads, but you want add [concrete lampposts](https://mods.factorio.com/mods/Klonan/Concrete_Lamppost) (entity from a separate mod) to them.
 
-If you just place the lamppost with `LuaSurface.create_entity()`, the Concrete Lamppost mod won't know about it, and won't spawn the additional entities. Likewise, if you destroy a lamppost with `LuaEntity.destroy()`, the Concrete Lamppost mod won't know about it, and the additional entities will remain on the map.
+If you use `LuaSurface.create_entity()` to place a lamppost, the Concrete Lamppost mod won't know about it, and won't spawn the additional entities. Likewise, if you use `LuaEntity.destroy()`, the Concrete Lamppost mod won't know about it, and any spawned entities will remain on the map. Epic fail.
 
-To solve this, use the `create_entity()` and `destroy_entity()` functions - they spawn the events that almost every mod will recongise and act upon...
+To solve this, use the `create_entity()` and `destroy_entity()` functions - they spawn the events that almost all mods listen for and act upon...
 
 ```lua
 -- control.lua
