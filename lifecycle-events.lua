@@ -8,8 +8,8 @@ local fakeBot = { valid = false }
 
 -- can entity be destroyed?
 function _G.can_destroy( entity )
+  if not entity or not entity.valid then return end
   -- TODO: work out if it can be destroyed (eg. rail with train on top = false)
-  -- logic updated each time we discover something new
   return true
 end
 
