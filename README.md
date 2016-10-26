@@ -28,7 +28,7 @@ Note: To mtaintain performance, very little error checking is performed.
 
 The `destroy_entity()` function is similar to `LuaEntity.destroy()`, but it triggers an event:
 
-* `defines.events.on_entity_died` -- only triggered if it `can_destroy( entity )`
+* [`defines.events.on_entity_died`](http://lua-api.factorio.com/latest/events.html#on_entity_died) -- only triggered if it `can_destroy( entity )`
 
 
 ```lua
@@ -44,8 +44,8 @@ Where:
 
 The global `create_entity()` function is similar to `LuaSurface.create_entity()`, but it triggers an event:
 
-* `defines.events.on_built_entity` -- only if `player` param specified
-* `defines.events.on_robot_built_entity`
+* [`defines.events.on_built_entity`](http://lua-api.factorio.com/latest/events.html#on_built_entity) -- if `player` param specified
+* [`defines.events.on_robot_built_entity`](http://lua-api.factorio.com/latest/events.html#on_robot_built_entity) -- if `player` param _not_ specified
 
 ```lua
 local new_entity = create_entity( surface, settings[, player] )
