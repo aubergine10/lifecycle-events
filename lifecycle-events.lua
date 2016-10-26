@@ -27,7 +27,7 @@ function _G.create_entity( surface, settings, player )
   if entity then
     if player then
       player = type( player ) == 'table' and player.index or player
-      game.raise_event( _player, { created_entity = entity, player = player, tick = game.tick, name = _player } )
+      game.raise_event( _player, { created_entity = entity, player_index = player, tick = game.tick, name = _player } )
     else
       game.raise_event( _robot, { created_entity = entity, robot = fakeBot, tick = game.tick, name = _robot } )
     end
