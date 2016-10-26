@@ -2,16 +2,15 @@
 
 When a mod creates or destroys an entity via Lua script, no events are fired. This is not a problem if the created/destroyed entities are from that mod, because it can handle everything internally.
 
-However, if the created/destroyed entities are from an external mod, or the vanilla game, problems can arise - because other mods, which may need to take action, have no clue that the entities were created/destroyed.
-
-This mod fixes that issue, by providing event-generating methods for creating and destroying entities.
+However, if the created/destroyed entities are from an external mod, or the vanilla game, other mods which may need to take action have no clue that the entities were created/destroyed. That's a [problem](https://forums.factorio.com/viewtopic.php?f=34&t=34952).
 
 ## Installation
 
-Download the `event-lifecycle.lua` and put it in your mod folder, then require it at the top of your own `control.lua`:
+Download [`lifecycle-events.lua`](https://github.com/aubergine10/lifecycle-events/blob/master/lifecycle-events.lua) and put it in your mod folder, then require it at the top of your own `control.lua`:
 
 ```lua
-require 'event-lifecycle`
+-- in your control.lua:
+require 'lifecycle-events`
 ```
 
 ## Usage
