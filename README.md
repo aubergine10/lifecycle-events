@@ -8,6 +8,50 @@ However, if the created/destroyed entities are from an external mod, or the vani
 
 Use the functions provided by this module when you create or destroy entities that aren't part of your mod.
 
+## Example
+
+Imagine you've got a mod that creates roads, but you want to line those roads with [concrete lampposts](https://mods.factorio.com/mods/Klonan/Concrete_Lamppost) (entity from a separate mod).
+
+If you just place the lamppost with `LuaSurface.create_entity()`, the Concrete Lamppost mod won't know about it, and won't spawn the additional entities. Likewise, if you destroy a lamppost with `LuaEntity.destroy()`, the Concrete Lamppost mod won't know about it, and the additional entities will remain on the map.
+
+To solve this, use the `create_entity()` and `destroy_entity()` functions - they spawn the events that almost every mod will recongise and act upon...
+
+```lua
+-- control.lua
+
+require 'lifecycle-events'
+
+-- some time later in the script...
+
+local function add_lamppost( surface, pos, dir, player )
+
+  return create_entity(
+    surface,
+    {
+      type = 'electric-pole',
+      name = 'concrete-lamppost',
+      position = pos,
+      direction = dir,
+      force = player.force
+    },
+    player
+  )
+
+  -- defines.events.on_built_entity triggered
+
+end
+
+local function remove_lappost( lamppost )
+
+  -- defines.events.on_entity_died triggered
+
+  return destroy_entity( lamppost )
+
+end
+```
+
+As far as the Concrete Lamppost mod is concerned, a player created and destroyed the lampposts, so it will act accordingly.
+
 ## Installation
 
 Download [`lifecycle-events.lua`](https://github.com/aubergine10/lifecycle-events/blob/master/lifecycle-events.lua) and put it in your mod folder, then require it at the top of your own `control.lua`:
@@ -62,42 +106,6 @@ Where:
   * If `player` specified, `on_built_entity` event is used
   * Otherwise, `on_robot_built_entity` is used with invalid `.robot` property
 * `new_entity` = the entity that was created, or `nil` if there was a problem
-
-## Example
-
-Imagine you've got a mod that creates roads, but you want to line those roads with [concrete lampposts](https://mods.factorio.com/mods/Klonan/Concrete_Lamppost) (entity from a separate mod).
-
-If you just place the lamppost with `LuaSurface.create_entity()`, the Concrete Lamppost mod won't know about it, and won't spawn the additional entities. Likewise, if you destroy a lamppost with `LuaEntity.destroy()`, the Concrete Lamppost mod won't know about it, and the additional entities will remain on the map.
-
-To solve this, use the `create_entity()` and `destroy_entity()` functions - they spawn the events that almost every mod will recongise and act upon...
-
-```lua
--- control.lua
-
-require 'lifecycle-events'
-
--- some time later in the script...
-
-local function add_lamppost( surface, pos, dir, player )
-  return create_entity(
-    surface,
-    {
-      type = 'electric-pole',
-      name = 'concrete-lamppost',
-      position = pos,
-      direction = dir,
-      force = player.force
-    },
-    player
-  )
-end
-
-local function remove_lappost( lamppost )
-  return destroy_entity( lamppost )
-end
-```
-
-As far as the Concrete Lamppost mod is concerned, a player created and destroyed the lampposts, so it will act accordingly.
 
 ## License
 
