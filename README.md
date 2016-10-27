@@ -8,7 +8,7 @@ However, if the created/destroyed entities are from an external mod, or the vani
 
 Use the functions provided by this module when you create or destroy entities that aren't part of your mod.
 
-## Example
+#### Example
 
 Imagine you've got a mod that creates roads, but you want add [concrete lampposts](https://mods.factorio.com/mods/Klonan/Concrete_Lamppost) (entity from a separate mod) to them.
 
@@ -71,7 +71,7 @@ Three new global functions are provided:
 
 Note: To mtaintain performance, very little error checking is performed.
 
-## Destroying entities
+#### Destroying entities
 
 The `destroy_entity()` function is similar to [`LuaEntity.destroy()`](http://lua-api.factorio.com/latest/LuaEntity.html#LuaEntity.destroy), but it triggers an event:
 
@@ -87,7 +87,7 @@ Where:
 * `result` = `true` if entity was destroyed, otherwise `nil` (which is equivalent to `false`)
 * `entity` = a valid [`LuaEntity`](http://lua-api.factorio.com/latest/LuaEntity.html) table
 
-## Creating entities
+#### Creating entities
 
 The `create_entity()` function is similar to [`LuaSurface.create_entity()`](http://lua-api.factorio.com/latest/LuaSurface.html#LuaSurface.create_entity), but it triggers an event:
 
