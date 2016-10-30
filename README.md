@@ -79,13 +79,14 @@ The `destroy_entity()` function is similar to [`LuaEntity.destroy()`](http://lua
 
 
 ```lua
-local result = destroy_entity( entity )
+local result = destroy_entity( entity, force )
 ```
 
 Where:
 
 * `result` = `true` if entity was destroyed, otherwise `nil` (which is equivalent to `false`)
 * `entity` = a valid [`LuaEntity`](http://lua-api.factorio.com/latest/LuaEntity.html) table
+* `force` (optional) = the force that killed the entity, defaults to `nil`
 
 #### Creating entities
 
