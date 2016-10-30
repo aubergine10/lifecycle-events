@@ -14,9 +14,9 @@ function _G.can_destroy( entity )
 end
 
 -- trigger event before destroying entity
-function _G.destroy_entity( entity )
+function _G.destroy_entity( entity, attacker_force )
   if can_destroy( entity ) then
-     game.raise_event( _died, { entity = entity, tick = game.tick, name = _died } )
+     game.raise_event( _died, { entity = entity, force = attacker_force, tick = game.tick, name = _died } )
      return entity.destroy()
   end
 end
